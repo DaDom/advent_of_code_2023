@@ -1,4 +1,4 @@
-## Advent of code 2023 in Rust
+# Advent of code 2023 in Rust
 
 [Advent of code 2023](https://adventofcode.com/2023) solved using Rust.
 Both parts of each day can be run like this from root directory:
@@ -8,3 +8,16 @@ cargo run -- d01
 ```
 
 `d01` should be replaced with the day to be run, like `d01`, `d02`, `d03`, ...
+
+Tests are run like this:
+
+```shell
+cargo test
+```
+
+## Solutions by day
+
+| Day                                          | Solution                                                                            |
+|----------------------------------------------|-------------------------------------------------------------------------------------|
+| [Day 1](https://adventofcode.com/2023/day/1) | [d01/mod.rs](https://github.com/DaDom/advent_of_code_2023/blob/main/src/d01/mod.rs) |
+| [Day 2](https://adventofcode.com/2023/day/2) | [d01/mod.rs](https://github.com/DaDom/advent_of_code_2023/blob/main/src/d02/mod.rs) |
