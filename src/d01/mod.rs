@@ -93,7 +93,7 @@ fn find_maybe_written_digit(target: &str, reversed: bool) -> i32 {
 mod tests {
     #[test]
     fn part_one_example() {
-        let res = super::calc_line_sum("d01/example");
+        let res = super::calc_line_sum("d01/example_part_1");
         assert_eq!(142, res);
     }
 
