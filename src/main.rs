@@ -2,6 +2,7 @@ use std::env::args;
 
 mod d01;
 mod d02;
+mod d03;
 mod utils;
 
 fn main() {
@@ -12,6 +13,7 @@ fn main() {
     match first_arg.as_str() {
         "d01" => d01::main(),
         "d02" => d02::main(),
+        "d03" => d03::main(),
         _ => println!("Invalid argument: {}", first_arg),
     }
 }

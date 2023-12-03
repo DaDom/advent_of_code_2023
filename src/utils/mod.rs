@@ -9,8 +9,8 @@ pub fn get_input_file(file_path: &str) -> File {
     return File::open(path).unwrap();
 }
 
-pub fn get_lines(day: &str) -> Vec<String> {
-    let file = get_input_file(day);
+pub fn get_lines(file_path: &str) -> Vec<String> {
+    let file = get_input_file(file_path);
     let reader = BufReader::new(file);
     return reader.lines().map(|x| x.unwrap()).collect::<Vec<_>>();
 }
