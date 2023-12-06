@@ -4,6 +4,7 @@ mod d01;
 mod d02;
 mod d03;
 mod d04;
+mod d05;
 mod utils;
 
 fn main() {
@@ -16,6 +17,7 @@ fn main() {
         "d02" => d02::main(),
         "d03" => d03::main(),
         "d04" => d04::main(),
+        "d05" => d05::main(),
         _ => println!("Invalid argument: {}", first_arg),
     }
 }

@@ -23,3 +23,4 @@ cargo test
 | [Day 2](https://adventofcode.com/2023/day/2) | [d02/mod.rs](https://github.com/DaDom/advent_of_code_2023/blob/main/src/d02/mod.rs) |
 | [Day 3](https://adventofcode.com/2023/day/3) | [d03/mod.rs](https://github.com/DaDom/advent_of_code_2023/blob/main/src/d03/mod.rs) |
 | [Day 4](https://adventofcode.com/2023/day/4) | [d04/mod.rs](https://github.com/DaDom/advent_of_code_2023/blob/main/src/d04/mod.rs) |
+| [Day 5](https://adventofcode.com/2023/day/5) | [d05/mod.rs](https://github.com/DaDom/advent_of_code_2023/blob/main/src/d05/mod.rs) |
