@@ -97,15 +97,7 @@ fn determine_hand_type(hand: &str, jokers: bool) -> HandType {
         .collect_vec();
 
     // Jokers simply increase the count of the most prevalent card
-    if joker_count > 0 {
-        let highest_index = counts
-            .iter()
-            .position_max_by(|(_, a), (_, b)| a.cmp(b))
-            .unwrap();
-        counts[highest_index].1 += joker_count;
-    }
-
-    let count_max = counts.iter().map(|(_, c)| *c).max().unwrap();
+    let count_max = counts.iter().map(|(_, c)| *c).max().unwrap() + joker_count;
     match counts.len() {
         5 => HighCard,
         4 => OnePair,
