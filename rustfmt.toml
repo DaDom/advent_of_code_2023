@@ -1,0 +1,4 @@
+empty_item_single_line = true
+single_line_if_else = true
+single_line_if_else_max_width = 80
+single_line_let_else_max_width = 80
