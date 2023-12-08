@@ -9,6 +9,7 @@ dependencies = [
  "either",
  "itertools",
  "num",
+ "num-integer",
  "time",
 ]
 
