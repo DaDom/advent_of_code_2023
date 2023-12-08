@@ -89,7 +89,7 @@ fn determine_hand_type(hand: &str, jokers: bool) -> HandType {
         return FiveOfKind;
     }
 
-    let mut counts = hand
+    let counts = hand
         .chars()
         .filter(|&c| !jokers || c != 'J')
         .counts()
