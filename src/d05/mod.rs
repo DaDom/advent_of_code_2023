@@ -2,7 +2,7 @@ use std::cmp::min;
 
 use itertools::Itertools;
 
-use crate::utils::{get_lines, part_end, part_start};
+use crate::utils::{get_lines, part_end, part_start, split_whitespace};
 
 // (source start, source end inclusive, destination start, destination end inclusive)
 type Mappings = Vec<(i64, i64, i64, i64)>;
@@ -91,7 +91,7 @@ fn parse_input(file_path: &str) -> (Vec<i64>, Vec<Mappings>) {
     ];
 
     let lines = get_lines(file_path);
-    let seeds = split_nums(lines.first().unwrap().split_once(": ").unwrap().1);
+    let seeds = split_whitespace::<i64>(lines.first().unwrap().split_once(": ").unwrap().1);
 
     let mut mapping_index = 0usize;
     let mut mappings: Vec<Mappings> = lines.iter().skip(2).filter(|line| !line.is_empty()).fold(
@@ -100,7 +100,7 @@ fn parse_input(file_path: &str) -> (Vec<i64>, Vec<Mappings>) {
             if line.ends_with(" map:") {
                 mapping_index = map_order.iter().position(|&x| line.starts_with(x)).unwrap();
             } else {
-                let n = split_nums(line);
+                let n = split_whitespace::<i64>(line);
                 acc[mapping_index].push((n[1], n[1] + n[2] - 1, n[0], n[0] + n[2] - 1));
             }
             acc
@@ -113,14 +113,6 @@ fn parse_input(file_path: &str) -> (Vec<i64>, Vec<Mappings>) {
         .for_each(|m| m.sort_by(|&a, &b| a.0.cmp(&b.0)));
 
     (seeds, mappings)
-}
-
-fn split_nums(target: &str) -> Vec<i64> {
-    target
-        .trim()
-        .split_whitespace()
-        .map(|n| n.parse::<i64>().unwrap())
-        .collect_vec()
 }
 
 #[cfg(test)]

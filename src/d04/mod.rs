@@ -4,6 +4,7 @@ use itertools::Itertools;
 use num::pow;
 
 use crate::utils;
+use crate::utils::split_whitespace;
 
 pub fn main() {
     part_one();
@@ -45,17 +46,9 @@ fn get_card_values(file_path: &str) -> Vec<(i32, i32)> {
         .iter()
         .map(|line| line.split_once(':').unwrap().1.trim())
         .map(|line| line.split_once('|').unwrap())
-        .map(|(win, mine)| (split_nums(win), split_nums(mine)))
+        .map(|(win, mine)| (split_whitespace::<i32>(win), split_whitespace::<i32>(mine)))
         .map(|(win, mine)| win.iter().filter(|&n| mine.contains(n)).count())
         .map(|n| (n as i32, if n <= 0 { 0 } else { pow(2, n - 1) }))
-        .collect_vec()
-}
-
-fn split_nums(target: &str) -> Vec<i32> {
-    target
-        .trim()
-        .split_whitespace()
-        .map(|n| n.parse::<i32>().unwrap())
         .collect_vec()
 }
 

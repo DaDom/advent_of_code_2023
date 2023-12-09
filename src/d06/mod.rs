@@ -2,7 +2,7 @@ use std::iter::zip;
 
 use itertools::Itertools;
 
-use crate::utils::{get_lines, part_end, part_start};
+use crate::utils::{get_lines, part_end, part_start, split_whitespace};
 
 pub fn main() {
     part_one();
@@ -29,7 +29,7 @@ fn calc_win_options_product(file_path: &str) -> i64 {
         .iter()
         .take(2)
         .map(|line| line.split_once(':').unwrap().1)
-        .map(|nums| split_nums(nums))
+        .map(|nums| split_whitespace::<i64>(nums))
         .collect_vec();
     let races = zip(&parsed[0], &parsed[1]).collect_vec();
 
@@ -76,14 +76,6 @@ fn calc_win_options_count(time: i64, distance: i64) -> i64 {
     }
 
     upper - lower + 1
-}
-
-fn split_nums(target: &str) -> Vec<i64> {
-    target
-        .trim()
-        .split_whitespace()
-        .map(|n| n.parse::<i64>().unwrap())
-        .collect_vec()
 }
 
 #[cfg(test)]

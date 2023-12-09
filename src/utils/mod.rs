@@ -1,7 +1,10 @@
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::path::Path;
+use std::str::FromStr;
 use std::time::Instant;
+
+use itertools::Itertools;
 
 pub fn get_input_file(file_path: &str) -> File {
     let path_string = format!("./src/{}", &file_path);
@@ -22,4 +25,18 @@ pub fn part_start(num: i32) -> Instant {
 
 pub fn part_end(start: Instant) {
     println!("Finished in {:.2?}", start.elapsed());
+}
+
+pub fn split_whitespace<T>(target: &str) -> Vec<T>
+where
+    T: FromStr,
+{
+    target
+        .trim()
+        .split_whitespace()
+        .map(|n| {
+            n.parse::<T>()
+                .unwrap_or_else(|_| panic!("Cannot split: {target}"))
+        })
+        .collect_vec()
 }
