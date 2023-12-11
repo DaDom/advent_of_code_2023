@@ -68,37 +68,38 @@ fn find_enclosed_tile_count(file_path: &str) -> i32 {
         .enumerate()
         .map(|(ri, row)| {
             let mut inside = false;
-            row.iter().enumerate().fold(0, |acc, (ci, &orig_char)| {
+            row.iter()
                 // We need to process the start pipe with its exact role in the given loop structure
-                let c = if orig_char == 'S' { start_acts_as } else { orig_char };
-
-                if !tiles.contains(&(ri as i32, ci as i32)) {
-                    return acc + inside as i32;
-                }
-
-                // We determine the amount of enclosed tiles by observing horizontal crossing
-                // of the loop. Some patterns require special attention, for example:
-                // - F-7 and L-J are not crossing the loop boundaries
-                // - F-J or L-7 however are
-                // We also need to process 'S' for the exact role it plays in the given structure.
-                if ['|'].contains(&c) {
-                    inside = !inside;
-                } else if ['7', 'J'].contains(&c) {
-                    let open_char = (0..ci)
-                        .rev()
-                        .map(|ci| get_unchecked(&grid, &(ri as i32, ci as i32)))
-                        .map(|c| if c == 'S' { start_acts_as } else { c })
-                        .find(|&c| c != '-')
-                        .unwrap();
-                    if c == '7' && open_char == 'L' {
-                        inside = !inside;
-                    } else if c == 'J' && open_char == 'F' {
-                        inside = !inside;
+                .map(|&c| if c == 'S' { start_acts_as } else { c })
+                .enumerate()
+                .fold(0, |acc, (ci, c)| {
+                    if !tiles.contains(&(ri as i32, ci as i32)) {
+                        return acc + inside as i32;
                     }
-                }
 
-                acc
-            })
+                    // We determine the amount of enclosed tiles by observing horizontal crossing
+                    // of the loop. Some patterns require special attention, for example:
+                    // - F-7 and L-J are not crossing the loop boundaries
+                    // - F-J or L-7 however are
+                    // We also need to process 'S' for the exact role it plays in the given structure.
+                    if ['|'].contains(&c) {
+                        inside = !inside;
+                    } else if ['7', 'J'].contains(&c) {
+                        let open_char = (0..ci)
+                            .rev()
+                            .map(|ci| row.get(ci).unwrap())
+                            .map(|&c| if c == 'S' { start_acts_as } else { c })
+                            .find(|&c| c != '-')
+                            .unwrap();
+                        if c == '7' && open_char == 'L' {
+                            inside = !inside;
+                        } else if c == 'J' && open_char == 'F' {
+                            inside = !inside;
+                        }
+                    }
+
+                    acc
+                })
         })
         .sum()
 }
@@ -147,16 +148,16 @@ fn find_connected_tiles(grid: &Grid, start: &Coord) -> Vec<(Coord, Direction)> {
     let left_coord = move_left(start);
 
     let up = get(grid, &up_coord.0)
-        .filter(|&c| ['|', '7', 'F'].contains(&c))
+        .filter(|c| ['|', '7', 'F'].contains(c))
         .map(|_| up_coord);
     let down = get(grid, &down_coord.0)
-        .filter(|&c| ['|', 'J', 'L'].contains(&c))
+        .filter(|c| ['|', 'J', 'L'].contains(c))
         .map(|_| down_coord);
     let right = get(grid, &right_coord.0)
-        .filter(|&c| ['-', 'J', '7'].contains(&c))
+        .filter(|c| ['-', 'J', '7'].contains(c))
         .map(|_| right_coord);
     let left = get(grid, &left_coord.0)
-        .filter(|&c| ['-', 'L', 'F'].contains(&c))
+        .filter(|c| ['-', 'L', 'F'].contains(c))
         .map(|_| left_coord);
 
     [up, down, right, left].into_iter().filter_map(|x| x).collect_vec()
