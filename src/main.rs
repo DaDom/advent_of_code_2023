@@ -1,4 +1,5 @@
 use std::env::args;
+use std::time::Instant;
 
 mod d01;
 mod d02;
@@ -19,6 +20,23 @@ fn main() {
     let arg_values = args().collect::<Vec<_>>();
     let first_arg = arg_values.get(1).expect("Provide the module as arg, e.g. d01");
     match first_arg.as_str() {
+        "all" => {
+            let start = Instant::now();
+            d01::main();
+            d02::main();
+            d03::main();
+            d04::main();
+            d05::main();
+            d06::main();
+            d07::main();
+            d08::main();
+            d09::main();
+            d10::main();
+            d11::main();
+            d12::main();
+            d13::main();
+            println!("\nTotal execution time: {:.2?}", start.elapsed());
+        }
         "d01" => d01::main(),
         "d02" => d02::main(),
         "d03" => d03::main(),
