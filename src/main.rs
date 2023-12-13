@@ -12,6 +12,7 @@ mod d09;
 mod d10;
 mod d11;
 mod d12;
+mod d13;
 mod utils;
 
 fn main() {
@@ -30,6 +31,7 @@ fn main() {
         "d10" => d10::main(),
         "d11" => d11::main(),
         "d12" => d12::main(),
+        "d13" => d13::main(),
         _ => println!("Invalid argument: {}", first_arg),
     }
 }
