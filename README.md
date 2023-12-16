@@ -11,6 +11,12 @@ cargo run -- d01
 
 `d01` should be replaced with the day to be run, like `d01`, `d02`, `d03`, ...
 
+Running all days at once in sequence can be done like this:
+
+```shell
+cargo run -- all
+```
+
 Tests are run like this:
 
 ```shell
@@ -34,3 +40,4 @@ cargo test
 | [Day 11](https://adventofcode.com/2023/day/11) | [d11/mod.rs](https://github.com/DaDom/advent_of_code_2023/blob/main/src/d11/mod.rs) |
 | [Day 12](https://adventofcode.com/2023/day/12) | [d12/mod.rs](https://github.com/DaDom/advent_of_code_2023/blob/main/src/d12/mod.rs) |
 | [Day 13](https://adventofcode.com/2023/day/13) | [d13/mod.rs](https://github.com/DaDom/advent_of_code_2023/blob/main/src/d13/mod.rs) |
+| [Day 14](https://adventofcode.com/2023/day/14) | [d14/mod.rs](https://github.com/DaDom/advent_of_code_2023/blob/main/src/d14/mod.rs) |
