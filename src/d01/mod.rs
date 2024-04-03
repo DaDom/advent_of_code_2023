@@ -27,13 +27,7 @@ fn calc_line_sum(file_path: &str) -> i32 {
     utils::get_lines(file_path)
         .iter()
         .map(|line| line.chars().filter(|c| c.is_digit(10)).collect::<String>())
-        .map(|num| {
-            format!(
-                "{}{}",
-                num.chars().next().unwrap(),
-                num.chars().last().unwrap()
-            )
-        })
+        .map(|num| format!("{}{}", num.chars().next().unwrap(), num.chars().last().unwrap()))
         .map(|num| num.parse::<i32>().unwrap())
         .sum::<i32>()
 }
@@ -76,13 +70,15 @@ fn find_maybe_written_digit(target: &str, reversed: bool) -> i32 {
             }
             written
                 .iter()
-                .map(|(w, c)| {
-                    if target[i..min(i + w.len(), target.len())] == **w {
-                        Some(c)
-                    } else {
-                        None
-                    }
-                })
+                .map(
+                    |(w, c)| {
+                        if target[i..min(i + w.len(), target.len())] == **w {
+                            Some(c)
+                        } else {
+                            None
+                        }
+                    },
+                )
                 .find_map(|c| c.map(|c| *c))
         })
         .map(|c| c.to_string().parse::<i32>().unwrap())
