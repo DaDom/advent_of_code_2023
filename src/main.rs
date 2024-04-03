@@ -17,6 +17,7 @@ mod d13;
 mod d14;
 mod d15;
 mod d16;
+mod d17;
 mod utils;
 
 fn main() {
@@ -41,6 +42,7 @@ fn main() {
             d14::main();
             d15::main();
             d16::main();
+            d17::main();
             println!("\nTotal execution time: {:.2?}", start.elapsed());
         }
         "d01" => d01::main(),
@@ -59,6 +61,7 @@ fn main() {
         "d14" => d14::main(),
         "d15" => d15::main(),
         "d16" => d16::main(),
+        "d17" => d17::main(),
         _ => println!("Invalid argument: {}", first_arg),
     }
 }
